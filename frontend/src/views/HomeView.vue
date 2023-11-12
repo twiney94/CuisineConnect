@@ -1,8 +1,10 @@
-<script setup lang="ts">
-</script>
-
 <template>
   <main>
-    test
+    <seasonal-recipes />
   </main>
 </template>
+
+<script setup lang="ts">
+import SeasonalRecipes from '@/components/home/SeasonalRecipes.vue';
+
+</script>

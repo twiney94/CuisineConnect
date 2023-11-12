@@ -1,31 +1,22 @@
-<script setup lang="ts">
-import { RouterView } from 'vue-router'
-import { FwbButton, FwbNavbar, FwbNavbarCollapse, FwbNavbarLink, FwbNavbarLogo } from 'flowbite-vue'
-</script>
-
 <template>
-  <header>
+  <header class="mb-4">
     <div class="wrapper">
       <fwb-navbar>
         <template #logo>
-          <fwb-navbar-logo alt="Flowbite logo" image-url="/images/logo.svg" link="#">
-            Flowbite
-          </fwb-navbar-logo>
+          <fwb-navbar-logo
+            alt="Cuisine Connect Logo"
+            image-url="https://svgur.com/i/zbj.svg"
+            link="#"
+          />
         </template>
         <template #default="{ isShowMenu }">
-          <fwb-navbar-collapse :is-show-menu="isShowMenu">
-            <fwb-navbar-link is-active link="#">
-              <RouterLink to="/"> Home </RouterLink>
-            </fwb-navbar-link>
-            <fwb-navbar-link link="#">
-              <RouterLink to="/services"> Services </RouterLink>
-            </fwb-navbar-link>
-            <fwb-navbar-link link="#"> Pricing </fwb-navbar-link>
-            <fwb-navbar-link link="#"> Contact </fwb-navbar-link>
-          </fwb-navbar-collapse>
+          <!-- search bar -->
+          <div class="flex-grow px-4">
+            <NavBar />
+          </div>
         </template>
         <template #right-side>
-          <fwb-button> Get started </fwb-button>
+          <fwb-button class="bg-transparent hover:bg-transparent focus:ring-transparent"><fwb-avatar rounded /></fwb-button>
         </template>
       </fwb-navbar>
     </div>
@@ -35,3 +26,9 @@ import { FwbButton, FwbNavbar, FwbNavbarCollapse, FwbNavbarLink, FwbNavbarLogo }
 </template>
 
 <style scoped></style>
+
+<script setup lang="ts">
+import { RouterView } from 'vue-router'
+import { FwbButton, FwbNavbar, FwbNavbarLogo, FwbAvatar } from 'flowbite-vue'
+import NavBar from './components/home/NavBar.vue'
+</script>

@@ -1,5 +1,17 @@
+export interface RecipePrototype {
+  id: string
+  name: string
+  reviews: number
+  image: string
+  difficulty: number
+  prepTime: number
+  cookTime: number
+  reviewAverage: number
+  reviewNumber: number
+}
+
 export interface Recipe {
-  id: number
+  id: string
   name: string
   description: string
   ingredients: Ingredient[]
@@ -14,8 +26,9 @@ export interface Recipe {
 }
 
 export interface Review {
-  id: number
-  recipeId: number
+  id: string
+  userId: string
+  recipeId: string
   rating: number
 }
 

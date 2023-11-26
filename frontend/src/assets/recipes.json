@@ -1,0 +1,174 @@
+[
+  {
+    "id": "qsdqsdazd",
+    "name": "Pasta Alfredo",
+    "description": "A delicious pasta dish",
+    "instructions": ["Boil water", "Add pasta", "Cook for 10 minutes", "Drain water", "Add sauce"],
+    "ingredients": [
+      {
+        "id": 1,
+        "name": "Pasta",
+        "quantity": 1,
+        "unit": "box"
+      },
+      {
+        "id": 2,
+        "name": "Alfredo Sauce",
+        "quantity": 1,
+        "unit": "jar"
+      }
+    ],
+    "image": "https://www.foodandwine.com/thmb/tAS-x_IC4ss1cb9EdDpsr0UExdM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/bucatini-with-mushroom-ragu-dandelion-greens-and-tarragon-FT-RECIPE0421-3a5f0d29f7264f5e9952d4a3a51f5f58.jpg",
+    "difficulty": 1,
+    "prepTime": 10,
+    "cookTime": 10,
+    "servings": 4,
+    "authorId": "qsdqsdazd",
+    "categoryId": 1
+  },
+  {
+    "id": 2,
+    "name": "Chicken Stir-Fry",
+    "description": "A quick and healthy stir-fry",
+    "instructions": [
+      "Cut chicken into strips",
+      "Stir-fry vegetables and chicken in a pan",
+      "Add sauce and toss"
+    ],
+    "ingredients": [
+      {
+        "id": 3,
+        "name": "Chicken Breast",
+        "quantity": 0.5,
+        "unit": "kg"
+      },
+      {
+        "id": 4,
+        "name": "Mixed Vegetables",
+        "quantity": 2,
+        "unit": "cups"
+      },
+      {
+        "id": 5,
+        "name": "Stir-Fry Sauce",
+        "quantity": 1,
+        "unit": "bottle"
+      }
+    ],
+    "image": "https://www.eatwell101.com/wp-content/uploads/2021/04/Chicken-Stir-Fry-recipe-2.jpg",
+    "difficulty": 2,
+    "prepTime": 15,
+    "cookTime": 15,
+    "servings": 3,
+    "authorId": "asdasdqwe",
+    "categoryId": 2
+  },
+  {
+    "id": 3,
+    "name": "Margherita Pizza",
+    "description": "Classic and simple pizza",
+    "instructions": [
+      "Preheat oven",
+      "Roll out pizza dough",
+      "Spread tomato sauce and add cheese",
+      "Bake until crust is golden"
+    ],
+    "ingredients": [
+      {
+        "id": 6,
+        "name": "Pizza Dough",
+        "quantity": 1,
+        "unit": "pack"
+      },
+      {
+        "id": 7,
+        "name": "Tomato Sauce",
+        "quantity": 1,
+        "unit": "cup"
+      },
+      {
+        "id": 8,
+        "name": "Mozzarella Cheese",
+        "quantity": 200,
+        "unit": "g"
+      }
+    ],
+    "image": "https://www.simplyrecipes.com/thmb/8b9Oonbn2TQgGrcUEF1gSffVjFA=/2000x1333/filters:fill(auto,1)/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2019__09__how-to-make-homemade-pizza-recipe-5-1200-3a960340b79a46878f53187803ebc4c1.jpg",
+    "difficulty": 3,
+    "prepTime": 20,
+    "cookTime": 15,
+    "servings": 2,
+    "authorId": "zxcvbnmasd",
+    "categoryId": 3
+  },
+  {
+    "id": 4,
+    "name": "Vegetarian Buddha Bowl",
+    "description": "A nutritious bowl of goodness",
+    "instructions": ["Cook quinoa", "Roast vegetables", "Assemble bowl with dressing"],
+    "ingredients": [
+      {
+        "id": 9,
+        "name": "Quinoa",
+        "quantity": 1,
+        "unit": "cup"
+      },
+      {
+        "id": 10,
+        "name": "Mixed Vegetables",
+        "quantity": 3,
+        "unit": "cups"
+      },
+      {
+        "id": 11,
+        "name": "Tahini Dressing",
+        "quantity": 2,
+        "unit": "tbsp"
+      }
+    ],
+    "image": "https://cookieandkate.com/images/2021/05/buddha-bowl-recipe.jpg",
+    "difficulty": 2,
+    "prepTime": 15,
+    "cookTime": 25,
+    "servings": 2,
+    "authorId": "poiuytrewq",
+    "categoryId": 4
+  },
+  {
+    "id": 5,
+    "name": "Beef Tacos",
+    "description": "Classic and flavorful beef tacos",
+    "instructions": [
+      "Season and cook ground beef",
+      "Warm tortillas",
+      "Assemble tacos with desired toppings"
+    ],
+    "ingredients": [
+      {
+        "id": 12,
+        "name": "Ground Beef",
+        "quantity": 0.5,
+        "unit": "kg"
+      },
+      {
+        "id": 13,
+        "name": "Taco Seasoning",
+        "quantity": 1,
+        "unit": "packet"
+      },
+      {
+        "id": 14,
+        "name": "Tortillas",
+        "quantity": 8,
+        "unit": "pieces"
+      }
+    ],
+    "image": "https://www.simplyrecipes.com/thmb/3dKD5Hb4y48ZNV4O9GULIzhb54k=/1440x810/filters:fill(auto,1)/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2019__01__HT-Beef-Tacos-6-1200-01-1982e84bb2e946d8a1bfadbf1bf671e7.jpg",
+    "difficulty": 2,
+    "prepTime": 20,
+    "cookTime": 15,
+    "servings": 4,
+    "authorId": "lkjhgfdsa",
+    "categoryId": 5
+  }
+]

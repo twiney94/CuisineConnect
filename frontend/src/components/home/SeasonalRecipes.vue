@@ -3,7 +3,7 @@
     <font-awesome-icon icon="fa-solid fa-tree" /> Seasonal Recipes
   </h1>
   <div class="flex gap-4">
-    <RecipeCard v-for="recipe in recipes" :key="recipe.id" :recipe="recipe" />
+    <RecipeCard v-for="recipe in recipes" :key="recipe.id" :recipe-prop="recipe" />
   </div>
 </template>
 
@@ -13,7 +13,7 @@ import type { Recipe } from '@/types/types'
 
 const recipes: Recipe[] = [
   {
-    id: 1,
+    id: "qsdqsdazd",
     name: 'Pasta Alfredo',
     description: 'A delicious pasta dish',
     instructions: ['Boil water', 'Add pasta', 'Cook for 10 minutes', 'Drain water', 'Add sauce'],

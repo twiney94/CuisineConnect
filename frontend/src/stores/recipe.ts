@@ -17,7 +17,7 @@ export const useRecipeStore = defineStore('recipe', () => {
   const getRecipeFromJsonFile = async (id: string) => {
     console.log('Getting recipe, id: ', id)
     const data = jsonFile
-    recipe.value = data.find((recipe: Recipe) => recipe.id === id)
+    recipe.value = data.find((recipe: RecipePrototype) => recipe.id === id) || null
     if (!recipe.value) {
       console.log('Recipe not found')
     }

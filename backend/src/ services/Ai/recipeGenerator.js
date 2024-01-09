@@ -1,4 +1,4 @@
-const {openai} = require("../config/openaiConfiguration")
+const {openai} = require("../../config/openaiConfiguration")
 
 const {MongoClient} = require("mongodb");
 const databaseName = 'AI-Cooking';

@@ -5,13 +5,20 @@ const bodyParser = require("body-parser");
 const app = express();
 require('dotenv').config()
 const {status} = require("./ services/status");
-const {findRecipe} = require("./ services/recipeGenerator");
-const {recipeRecommendation, accompanimentGenerator} = require("./ services/recommendation");
-const {shopListGenerator} = require("./ services/shopListGenerator");
+const {findRecipe} = require("./ services/Ai/recipeGenerator");
+const {recipeRecommendation, accompanimentGenerator} = require("./ services/Ai/recommendation");
+const {shopListGenerator} = require("./ services/Ai/shopListGenerator");
 const {moderate} = require("./middleware/moderation");
-const {chatBot} = require("./ services/chatBot");
+const {chatBot} = require("./ services/Ai/chatBot");
 
 app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "*"); // allow all methods
+    res.header("Access-Control-Allow-Headers", "*"); // allow all headers
+    next();
+});
 
 app.use(bodyParser.json());
 

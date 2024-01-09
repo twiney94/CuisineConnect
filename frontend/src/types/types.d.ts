@@ -10,6 +10,12 @@ export interface RecipePrototype {
   reviewNumber: number
 }
 
+export interface RecipeAPIPrototype {
+  name: string
+  ingredients: string[]
+  cookingTime: string
+}
+
 export interface Recipe {
   id: string
   name: string

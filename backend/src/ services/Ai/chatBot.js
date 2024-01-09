@@ -1,4 +1,4 @@
-const { openai } = require('../config/openaiConfiguration');
+const { openai } = require('../../config/openaiConfiguration');
 
 //create a ChatBot using OpenAI API
 const chatBot = async (req, res) => {

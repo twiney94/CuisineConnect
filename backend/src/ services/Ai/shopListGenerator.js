@@ -1,4 +1,4 @@
-const {openai} = require("../config/openaiConfiguration")
+const {openai} = require("../../config/openaiConfiguration")
 
 
 //Génération de liste de courses intelligente

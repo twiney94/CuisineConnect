@@ -14,6 +14,33 @@ export const useRecipeStore = defineStore('recipe', () => {
     recipe.value = data
   }
 
+  const findRecipeFromString = (str: string) => {
+    // POST request, body is {query : str, language: 'en'}
+    const req = {
+      query: str,
+      language: 'en'
+    }
+
+    // POST request options
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(req),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+
+    // POST request to API
+    fetch('http://localhost:3000/findRecipe', options)
+      .then(response => response.json())
+      .then(data => {
+        console.log('data: ', data)
+
+        return recipe
+      }
+      )
+  }
+
   const getRecipeFromJsonFile = async (id: string) => {
     console.log('Getting recipe, id: ', id)
     const data = jsonFile

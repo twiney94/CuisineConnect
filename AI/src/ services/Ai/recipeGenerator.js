@@ -16,6 +16,7 @@ const findRecipe = async (req, res) => {
         const collection = database.collection(collectionName);
         let dishRecipe = null;
         for (const dish of dishes) {
+            console.log("dish:", dish);
             dishRecipe = await collection.findOne({dish: dish});
             if (dishRecipe) {
                 res.status(200).json({dishRecipe});

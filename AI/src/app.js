@@ -10,8 +10,14 @@ const {recipeRecommendation, accompanimentGenerator} = require("./ services/Ai/r
 const {shopListGenerator} = require("./ services/Ai/shopListGenerator");
 const {moderate} = require("./middleware/moderation");
 const {chatBot} = require("./ services/Ai/chatBot");
+const {register} = require("./ services/Auth/register");
+const {login} = require("./ services/Auth/login");
+const {validateAccessToken} = require("./middleware/validateAccessToken");
+const {addDishToFavoris, deleteDishFromFavoris, getFavoris} = require("./ services/Favoris/favoris");
 
 app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+app.use(bodyParser.json());
 
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -19,8 +25,6 @@ app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Headers", "*"); // allow all headers
     next();
 });
-
-app.use(bodyParser.json());
 
 /**
  * @swagger
@@ -34,6 +38,14 @@ app.post("/findRecipe", findRecipe);
 app.post("/recipeRecommendation", recipeRecommendation);
 app.post("/accompanimentGenerator", accompanimentGenerator);
 app.post("/shoppingList", shopListGenerator);
+
+app.post("/chatbot", moderate, chatBot);
+
+app.post("/favoris", validateAccessToken, addDishToFavoris)
+
+app.post("/register", register);
+app.post("/login", login);
+
 /**
  * @swagger
  * /status:
@@ -46,9 +58,11 @@ app.post("/shoppingList", shopListGenerator);
  *       400:
  *         description: service unavailable
  */
-
-app.post("/chatbot", moderate, chatBot);
-
 app.get("/status", status);
+
+app.get("/favoris", validateAccessToken, getFavoris);
+
+
+app.delete("/favoris", validateAccessToken, deleteDishFromFavoris);
 
 module.exports = app;

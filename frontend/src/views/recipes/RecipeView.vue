@@ -121,8 +121,18 @@
     <h2 class="text-2xl text-primary font-bold mt-4">
       Yummy, CuisineBot has some ideas next for you!
     </h2>
-   <div class="flex flex-row gap-2 mb-40">
-      <RecipeCard v-for="recipe in recommandations" :key="recipe.name" :recipeProp="recipe" compact="true" />
+    <div class="flex flex-row gap-2 mb-40 justify-center">
+      <template v-if="recommandations.length > 0">
+        <RecipeCard
+          v-for="recipe in recommandations"
+          :key="recipe.name"
+          :recipeProp="recipe"
+          compact="true"
+        />
+      </template>
+      <template v-else>
+        <fwb-spinner color="yellow" size="12" />
+      </template>
     </div>
   </div>
 </template>
@@ -140,7 +150,7 @@ import HeaderRecap from '@/components/recipes/HeaderRecap.vue'
 import { useRecipeStore } from '@/stores/recipe'
 import { storeToRefs } from 'pinia'
 import { onMounted, ref } from 'vue'
-import { FwbCard, FwbRating } from 'flowbite-vue'
+import { FwbCard, FwbRating, FwbSpinner } from 'flowbite-vue'
 import RecipeCard from '@/components/RecipeCard.vue'
 import type { RecipeAPIPrototype } from '@/types/types'
 
@@ -162,6 +172,4 @@ onMounted(async () => {
     if (recipe.value) recommandations.value = await getRecommandationsFromApi(recipe?.value.name)
   })
 })
-
 </script>
-

@@ -1,25 +1,37 @@
 <template>
-  <div class="flex gap-4 text-lg">
-    <div class="flex text-primary font-bold">
-      <h2>
-        <font-awesome-icon icon="fa-solid fa-clock" />
-        {{ totalTime }} minutes
+  <div class="flex text-lg justify-between">
+    <div class="flex gap-4">
+      <div class="flex text-primary font-bold">
+        <h2>
+          <font-awesome-icon icon="fa-solid fa-clock" />
+          {{ totalTime }} minutes
+        </h2>
+      </div>
+      <div class="font-bold" :class="difficultyColor">
+        <h2>
+          <font-awesome-icon icon="fa-solid fa-gauge" />
+          Difficulty: {{ difficulty }}
+        </h2>
+      </div>
+      <h2 class="text-primary font-bold">
+        <font-awesome-icon icon="fa-solid fa-users" /> {{ servings }} servings
       </h2>
     </div>
-    <div class="font-bold" :class="difficultyColor">
-      <h2>
-        <font-awesome-icon icon="fa-solid fa-gauge" />
-        Difficulty: {{ difficulty }}
-      </h2>
-    </div>
-    <h2 class="text-primary font-bold">
-      <font-awesome-icon icon="fa-solid fa-users" /> {{ servings }} servings
-    </h2>
+    <FwbButton @click="openSideDishes = true" class="bg-primary hover:bg-orange-300">
+      <template #prefix>
+        <font-awesome-icon icon="fa-solid fa-plus" />
+      </template>
+      Give me side dishes!!!
+    </FwbButton>
+    <side-dishes v-model="openSideDishes" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from '@vue/reactivity'
+import { computed, ref } from 'vue'
+import { FwbButton } from 'flowbite-vue'
+import SideDishes from '@/components/recipes/SideDishes.vue'
+const openSideDishes = ref<boolean>(false)
 
 const props = defineProps({
   totalTime: {

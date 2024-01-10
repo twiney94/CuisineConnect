@@ -8,6 +8,7 @@
       :total-time="recipe.prepTime + recipe.cookTime"
       :difficulty="recipe.difficulty"
       :servings="recipe.servings"
+      :dish="recipe.name"
     />
     <div class="flex w-full">
       <fwb-card
@@ -127,7 +128,7 @@
           v-for="recipe in recommandations"
           :key="recipe.name"
           :recipeProp="recipe"
-          compact="true"
+          :compact="true"
         />
       </template>
       <template v-else>

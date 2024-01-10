@@ -23,8 +23,9 @@
       </template>
       Give me side dishes!!!
     </FwbButton>
-    <side-dishes v-model="openSideDishes" />
   </div>
+  <side-dishes v-model="openSideDishes" :dish="dish"/>
+
 </template>
 
 <script setup lang="ts">
@@ -44,6 +45,10 @@ const props = defineProps({
   },
   servings: {
     type: Number,
+    required: true
+  },
+  dish: {
+    type: String,
     required: true
   }
 })

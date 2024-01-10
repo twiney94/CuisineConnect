@@ -8,6 +8,7 @@ export const useRecipeStore = defineStore('recipe', () => {
   const recipe: Ref<Recipe | null> = ref(null)
   const recipes: Ref<RecipePrototype[]> = ref([])
   const recommandations: Ref<RecipeAPIPrototype[]> = ref([])
+  const accompaniements: Ref<String[]> = ref([])
 
   const getRecipeFromApi = async (id: string) => {
     const response = await fetch(`http://localhost:3000/recipes/${id}`)
@@ -37,6 +38,30 @@ export const useRecipeStore = defineStore('recipe', () => {
     const dataRecommandations: RecipeAPIPrototype[] = data.recipes
     recommandations.value = dataRecommandations
     return dataRecommandations
+  }
+
+  const getAccompanimentsFromApi = async (recipe: string): Promise<String[]> => {
+    // send this: {"dish": recipe, "language": "english"}
+    const req = {
+      dish: recipe,
+      language: 'français'
+    }
+
+    // POST request options
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(req),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+
+    const response = await fetch('http://localhost:3000/accompanimentGenerator', options)
+
+    const data = await response.json()
+    const dataAccompaniements: String[] = data.accompagnements
+    accompaniements.value = dataAccompaniements
+    return dataAccompaniements
   }
 
   const findRecipeFromString = async (str: string) => {
@@ -81,9 +106,11 @@ export const useRecipeStore = defineStore('recipe', () => {
     recipe,
     recipes,
     recommandations,
+    accompaniements,
     getRecipeFromApi,
     getRecipeFromJsonFile,
     findRecipeFromString,
-    getRecommandationsFromApi
+    getRecommandationsFromApi,
+    getAccompanimentsFromApi
   }
 })

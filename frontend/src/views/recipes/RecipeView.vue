@@ -1,5 +1,6 @@
 <template>
   <div class="flex flex-col gap-4">
+      <shopping-list v-if="recipe" v-model="shoppingList" :dish="recipe.name" />
     <h1 class="text-3xl text-primary font-bold mt-4">
       <font-awesome-icon icon="fa-solid fa-bowl-food" /> {{ recipe?.name }}
     </h1>
@@ -26,7 +27,15 @@
         </div>
       </fwb-card>
     </div>
-    <h2 class="text-2xl text-primary font-bold mt-4">Ingredients</h2>
+    <div class="flex justify-between">
+      <h2 class="text-2xl text-primary font-bold mt-4">Ingredients</h2>
+      <fwb-button @click="shoppingList = true" class="bg-primary hover:bg-orange-300">
+        <template #prefix>
+          <font-awesome-icon icon="fa-solid fa-cart-shopping" />
+        </template>
+        I want my shopping list!
+      </fwb-button>
+    </div>
     <div class="flex flex-col gap-4">
       <div v-for="ingredient in recipe?.ingredients" :key="ingredient.id">
         <div
@@ -151,12 +160,15 @@ import HeaderRecap from '@/components/recipes/HeaderRecap.vue'
 import { useRecipeStore } from '@/stores/recipe'
 import { storeToRefs } from 'pinia'
 import { onMounted, ref } from 'vue'
-import { FwbCard, FwbRating, FwbSpinner } from 'flowbite-vue'
+import { FwbCard, FwbRating, FwbSpinner, FwbButton } from 'flowbite-vue'
 import RecipeCard from '@/components/RecipeCard.vue'
 import type { RecipeAPIPrototype } from '@/types/types'
+import ShoppingList from '@/components/recipes/ShoppingList.vue'
 
 const { recipe, recipes } = storeToRefs(useRecipeStore())
 const { getRecipeFromJsonFile, getRecommandationsFromApi } = useRecipeStore()
+
+const shoppingList = ref<boolean>(false)
 
 const recommandations = ref<Array<RecipeAPIPrototype>>([])
 

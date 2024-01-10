@@ -23,7 +23,9 @@ export const useAppStore = defineStore('app', () => {
     })
     const data: ChatBotResponse = await response.json()
     console.log('data: ', data)
-    const formattedAnswer = data.answer.replace(/"/g, '').replace(/\n/g, '\n\n')
+    // Replace the \n in the answer by a real line break
+    // Replace the " by nothing
+    const formattedAnswer = data.answer.replace(/\\n/g, '\n').replace(/"/g, '')
 
     return formattedAnswer
   }

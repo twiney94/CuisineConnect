@@ -126,6 +126,12 @@ const sendMessage = async () => {
     text: message.value,
     from: 'user'
   })
+  setTimeout(() => {
+    chatBox.value?.scrollTo({
+      top: chatBox.value.scrollHeight,
+      behavior: 'smooth'
+    })
+  }, 500)
 
   await sendToChatBot(message.value)
     ?.then((res) => {
@@ -158,7 +164,7 @@ const userTitle = (from: 'bot' | 'user') => {
 
 onMounted(() => {
   messages.value.push({
-    text: 'Hi, I am CuisineBot. How can I help you?',
+    text: 'Bonjour, je suis CuisineBot, puis-je vous aider?',
     from: 'bot'
   })
 })

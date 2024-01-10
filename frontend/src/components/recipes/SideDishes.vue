@@ -6,11 +6,11 @@
       </h2>
     </template>
     <template #body>
-      <div class="flex justify-evenly">
+      <div class="flex justify-evenly gap-2">
         <fwb-card
           variant="horizontal"
-          v-for="accompaniement in accompaniements"
-          :key="accompaniement"
+          v-for="(accompaniement, index) in accompaniements"
+          :key="index"
         >
           <div class="p-5">
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">

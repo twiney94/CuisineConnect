@@ -9,11 +9,36 @@ export const useRecipeStore = defineStore('recipe', () => {
   const recipes: Ref<RecipePrototype[]> = ref([])
   const recommandations: Ref<RecipeAPIPrototype[]> = ref([])
   const accompaniements: Ref<String[]> = ref([])
+  const shoppingList: Ref<String[]> = ref([])
 
   const getRecipeFromApi = async (id: string) => {
     const response = await fetch(`http://localhost:3000/recipes/${id}`)
     const data = await response.json()
     recipe.value = data
+  }
+
+  const getShoppingListFromApi = async (recipe: string) => {
+    const req = {
+      recipe,
+      language: 'français'
+    }
+
+    // POST request options
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(req),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+
+    const response = await fetch('http://localhost:3000/shoppingList', options)
+
+    const data = await response.json()
+
+    shoppingList.value = data.shoppingList
+
+    return data
   }
 
   const getRecommandationsFromApi = async (recipe: string): Promise<RecipeAPIPrototype[]> => {
@@ -107,10 +132,12 @@ export const useRecipeStore = defineStore('recipe', () => {
     recipes,
     recommandations,
     accompaniements,
+    shoppingList,
     getRecipeFromApi,
     getRecipeFromJsonFile,
     findRecipeFromString,
     getRecommandationsFromApi,
-    getAccompanimentsFromApi
+    getAccompanimentsFromApi,
+    getShoppingListFromApi
   }
 })

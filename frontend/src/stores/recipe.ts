@@ -12,7 +12,7 @@ export const useRecipeStore = defineStore('recipe', () => {
   const shoppingList: Ref<String[]> = ref([])
 
   const getRecipeFromApi = async (id: string) => {
-    const response = await fetch(`http://104.248.129.234:3000/recipes/${id}`)
+    const response = await fetch(`http://localhost:3000/recipes/${id}`)
     const data = await response.json()
     recipe.value = data
   }
@@ -32,7 +32,7 @@ export const useRecipeStore = defineStore('recipe', () => {
       }
     }
 
-    const response = await fetch('http://104.248.129.234:3000/shoppingList', options)
+    const response = await fetch('http://localhost:3000/shoppingList', options)
 
     const data = await response.json()
 
@@ -57,7 +57,7 @@ export const useRecipeStore = defineStore('recipe', () => {
       }
     }
 
-    const response = await fetch('http://104.248.129.234:3000/recipeRecommendation', options)
+    const response = await fetch('http://localhost:3000/recipeRecommendation', options)
 
     const data = await response.json()
     const dataRecommandations: RecipeAPIPrototype[] = data.recipes
@@ -81,7 +81,7 @@ export const useRecipeStore = defineStore('recipe', () => {
       }
     }
 
-    const response = await fetch('http://104.248.129.234:3000/accompanimentGenerator', options)
+    const response = await fetch('http://localhost:3000/accompanimentGenerator', options)
 
     const data = await response.json()
     const dataAccompaniements: String[] = data.accompagnements
@@ -109,7 +109,7 @@ export const useRecipeStore = defineStore('recipe', () => {
     }
 
     // POST request to API
-    fetch('http://104.248.129.234:3000/findRecipe', options)
+    fetch('http://localhost:3000/findRecipe', options)
       .then((response) => response.json())
       .then((data) => {
         console.log('data: ', data)

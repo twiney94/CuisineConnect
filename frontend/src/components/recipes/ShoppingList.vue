@@ -12,7 +12,7 @@
         </fwb-table-head>
         <fwb-table-body>
           <fwb-table-row v-for="(ingredient, index) in shoppingList" :key="index">
-            <fwb-table-cell>{{ ingredient.item }}</fwb-table-cell>
+            <fwb-table-cell>{{ ingredient }}</fwb-table-cell>
           </fwb-table-row>
         </fwb-table-body>
       </fwb-table>

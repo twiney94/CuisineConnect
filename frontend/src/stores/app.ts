@@ -8,6 +8,7 @@ export const useAppStore = defineStore('app', () => {
   }
 
   const sendToChatBot = async (message: string) => {
+    console.log('Sending message: ' + message)
     const response = await fetch('http://localhost:3000/chatbot', {
       method: 'POST',
       body: JSON.stringify({ message }),
@@ -15,9 +16,12 @@ export const useAppStore = defineStore('app', () => {
         'Content-Type': 'application/json'
       }
     })
-    const data = await response.json()
+    const data: ChatBotResponse = await response.json()
     console.log('data: ', data)
-    return data.answer.replace(/"/g, '')
+    const formattedAnswer = data.answer.replace(/"/g, '').replace(/\n/g, '\n\n')
+
+    return formattedAnswer
+
   }
 
   return { isDarkMode, sendToChatBot }

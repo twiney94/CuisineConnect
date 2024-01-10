@@ -15,10 +15,28 @@ export const useRecipeStore = defineStore('recipe', () => {
     recipe.value = data
   }
 
-  const getRecommandationsFromApi = async (id: string) => {
-    const response = await fetch(`http://localhost:3000/recipes/${id}/recommandations`)
+  const getRecommandationsFromApi = async (recipe: string): Promise<RecipeAPIPrototype[]> => {
+    // send this: {"dish": recipe, "language": "english"}
+    const req = {
+      dish: recipe,
+      language: 'français'
+    }
+
+    // POST request options
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(req),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+
+    const response = await fetch('http://localhost:3000/recipeRecommendation', options)
+
     const data = await response.json()
-    recipe.value = data
+    const dataRecommandations: RecipeAPIPrototype[] = data.recipes
+    recommandations.value = dataRecommandations
+    return dataRecommandations
   }
 
   const findRecipeFromString = async (str: string) => {
@@ -28,7 +46,7 @@ export const useRecipeStore = defineStore('recipe', () => {
     // POST request, body is {query : str, language: 'en'}
     const req = {
       query: str,
-      language: 'en'
+      language: 'français'
     }
 
     // POST request options
@@ -59,5 +77,13 @@ export const useRecipeStore = defineStore('recipe', () => {
     }
   }
 
-  return { recipe, recipes, recommandations, getRecipeFromApi, getRecipeFromJsonFile, findRecipeFromString }
+  return {
+    recipe,
+    recipes,
+    recommandations,
+    getRecipeFromApi,
+    getRecipeFromJsonFile,
+    findRecipeFromString,
+    getRecommandationsFromApi
+  }
 })

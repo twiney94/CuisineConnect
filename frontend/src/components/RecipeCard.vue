@@ -21,18 +21,13 @@
     </fwb-card>
     <fwb-card
       v-else
-      img-alt="Desk"
-      img-src="https://flowbite.com/docs/images/blog/image-4.jpg"
       variant="horizontal"
+      class="bg-primary hover:bg-primary"
     >
       <div class="p-5">
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-          Noteworthy technology acquisitions 2021
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-white dark:text-white">
+          {{ recipeProp.name }}
         </h5>
-        <p class="font-normal text-gray-700 dark:text-gray-400">
-          Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse
-          chronological order.
-        </p>
       </div>
     </fwb-card>
   </a>
@@ -41,7 +36,7 @@
 <script setup lang="ts">
 import { FwbCard, FwbRating } from 'flowbite-vue'
 import router from '@/router'
-import type { Recipe } from '@/types/types'
+import type { Recipe, RecipeAPIPrototype } from '@/types/types'
 import type { PropType } from 'vue'
 import { defineProps } from 'vue'
 import { useRecipeStore } from '@/stores/recipe'
@@ -59,7 +54,7 @@ const goToRecipe = (recipeParam: Recipe) => {
 
 const props = defineProps({
   recipeProp: {
-    type: Object as PropType<Recipe>,
+    type: Object as PropType<Recipe | RecipeAPIPrototype>,
     required: true
   },
   compact: {

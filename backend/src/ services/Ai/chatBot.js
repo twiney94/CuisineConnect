@@ -21,7 +21,7 @@ const chatBot = async (req, res) => {
 }
 
 function generatePromptSystem(language = "french") {
-    return 'you are a Michelin-starred chef with 15 years of experience in the profession with several culinary competitions won internationally and' + 'Answer in this ' + JSON.stringify(language) + ' language.';
+    return 'you are a Michelin-starred chef with 15 years of experience in the profession with several culinary competitions won internationally and' + 'Answer in this ' + JSON.stringify(language) + ' language and answer only to the message and synthesize. Answer directly to the message.';
 }
 
 module.exports = { chatBot };

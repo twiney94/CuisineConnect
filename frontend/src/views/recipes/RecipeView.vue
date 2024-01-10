@@ -118,10 +118,11 @@
         </div>
       </div>
     </div>
-    <h2 class="text-2xl text-primary font-bold mt-4">Yummy, CuisineBot has some ideas next for you!</h2>
-    <!-- display suggestions in card carousel -->
-    <div class="flex flex-row">
-      <RecipeCard v-for="str in 3" :key="str" :recipe-prop="recipe" :compact="true" />
+    <h2 class="text-2xl text-primary font-bold mt-4">
+      Yummy, CuisineBot has some ideas next for you!
+    </h2>
+   <div class="flex flex-row gap-2 mb-40">
+      <RecipeCard v-for="recipe in recommandations" :key="recipe.name" :recipeProp="recipe" compact="true" />
     </div>
   </div>
 </template>
@@ -138,12 +139,15 @@
 import HeaderRecap from '@/components/recipes/HeaderRecap.vue'
 import { useRecipeStore } from '@/stores/recipe'
 import { storeToRefs } from 'pinia'
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import { FwbCard, FwbRating } from 'flowbite-vue'
 import RecipeCard from '@/components/RecipeCard.vue'
+import type { RecipeAPIPrototype } from '@/types/types'
 
 const { recipe, recipes } = storeToRefs(useRecipeStore())
-const { getRecipeFromJsonFile } = useRecipeStore()
+const { getRecipeFromJsonFile, getRecommandationsFromApi } = useRecipeStore()
+
+const recommandations = ref<Array<RecipeAPIPrototype>>([])
 
 const props = defineProps({
   id: {
@@ -154,6 +158,10 @@ const props = defineProps({
 
 onMounted(async () => {
   console.log(props.id)
-  await getRecipeFromJsonFile(props.id)
+  await getRecipeFromJsonFile(props.id)?.then(async () => {
+    if (recipe.value) recommandations.value = await getRecommandationsFromApi(recipe?.value.name)
+  })
 })
+
 </script>
+

@@ -76,11 +76,11 @@
       :placeholder="!isSending ? 'Ask me anything' : 'CuisineBot is thinking...'"
       class="mb-2"
       v-model="message"
-      @keyup.enter.stop="debouncedSendMessage"
+      @keyup.enter.stop="sendMessage"
       :disabled="isSending"
     >
       <template #suffix>
-        <fwb-button variant="icon" color="yellow" @click.stop="debouncedSendMessage">
+        <fwb-button variant="icon" color="yellow" @click.stop="sendMessage">
           <svg
             class="w-5 h-5 text-white dark:text-white"
             aria-hidden="true"
@@ -119,27 +119,14 @@ const isSending = ref<boolean>(false)
 const messages = ref<Message[]>([])
 const message = ref<string>('')
 
-const debounce = (func: () => void, wait: number, immediate = false) => {
-  let timeout: ReturnType<typeof setTimeout> | null
-  return () => {
-    const later = () => {
-      timeout = null
-      if (!immediate) func()
-    }
-    const callNow = immediate && !timeout
-    if (timeout) clearTimeout(timeout)
-    timeout = setTimeout(later, wait)
-    if (callNow) func()
-  }
-}
-
 const sendMessage = async () => {
+  isSending.value = true
   messages.value.push({
     time: new Date(),
     text: message.value,
     from: 'user'
   })
-  message.value = ''
+
   await sendToChatBot(message.value)
     ?.then((res) => {
       messages.value.push({
@@ -161,13 +148,8 @@ const sendMessage = async () => {
         from: 'bot'
       })
     })
+  message.value = ''
   isSending.value = false
-}
-
-const debouncedSendMessage = () => {
-  if (!message.value) return
-  isSending.value = true
-  debounce(sendMessage, 500)()
 }
 
 const userTitle = (from: 'bot' | 'user') => {

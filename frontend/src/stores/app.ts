@@ -14,7 +14,7 @@ export const useAppStore = defineStore('app', () => {
 
   const sendToChatBot = async (message: string) => {
     console.log('Sending message: ' + message)
-    const response = await fetch('http://localhost:3000/chatbot', {
+    const response = await fetch('http://104.248.129.234:3000/chatbot', {
       method: 'POST',
       body: JSON.stringify({ message }),
       headers: {
